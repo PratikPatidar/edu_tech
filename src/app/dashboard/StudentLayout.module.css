@@ -1,0 +1,135 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0b0e14; /* Deep dark background */
+  font-family: 'Inter', sans-serif;
+  color: #f8fafc;
+}
+
+.sidebar {
+  width: 80px; /* Slim icon-only or narrow sidebar */
+  background-color: #121620;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #e81cff, #40c9ff);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 2.5rem;
+  font-size: 1.2rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  align-items: center;
+}
+
+.navLink {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.navLink:hover, .navLink.active {
+  background-color: rgba(232, 28, 255, 0.1);
+  color: #e81cff;
+}
+
+.mainContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topNavbar {
+  height: 70px;
+  background-color: #0b0e14;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.breadcrumb {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.iconBtn {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.iconBtn:hover {
+  color: white;
+}
+
+.profileWidget {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.3rem 1rem 0.3rem 0.3rem;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profileAvatar {
+  width: 35px;
+  height: 35px;
+  background: #e81cff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.profileName {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.mainContent {
+  padding: 2.5rem;
+  overflow-y: auto;
+}

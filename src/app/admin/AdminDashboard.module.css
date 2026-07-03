@@ -1,0 +1,161 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Announcements Slider */
+.sliderWrapper {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  border-radius: 20px;
+  padding: 3rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.sliderWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: url('/images/login-bg.jpg') center/cover;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.slide {
+  position: relative;
+  z-index: 2;
+}
+
+.slideTag {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.slide h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #ffffff, #9ca3af);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.slide p {
+  font-size: 1.1rem;
+  color: #d1d5db;
+  max-width: 600px;
+}
+
+/* Stats Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, #4DABF7, #c084fc);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+}
+
+.cardTitle {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cardValue {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+/* Achievements Section */
+.achievementsSection {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sectionHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.achievementGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.achieveItem {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+  border: 1px solid #e2e8f0;
+}
+
+.achieveItem:hover {
+  transform: scale(1.02);
+  background: #f1f5f9;
+}
+
+.achieveIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.achieveNumber {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #3b82f6;
+  margin-bottom: 0.2rem;
+}
+
+.achieveLabel {
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

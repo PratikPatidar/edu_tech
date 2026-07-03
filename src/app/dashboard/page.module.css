@@ -1,0 +1,188 @@
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.gridTop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.gridBottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .gridBottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #111827; /* Darker card background to contrast with #0b0e14 */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.iconBox {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(232, 28, 255, 0.1);
+  color: #e81cff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.cardTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.2rem;
+}
+
+.cardSubtitle {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.cardFooter {
+  color: #e81cff;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Specific styling for the bottom cards */
+.bottomCard {
+  background: #111827;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+}
+
+.bottomCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.bottomCardTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.badge {
+  background: rgba(232, 28, 255, 0.15);
+  color: #e81cff;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.subText {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.itemLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemAvatar {
+  width: 40px;
+  height: 40px;
+  background: #1e293b;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e81cff;
+  font-size: 1.2rem;
+}
+
+.itemAvatarCircle {
+  width: 40px;
+  height: 40px;
+  background: #4a044e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbcfe8;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.itemName {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.itemDesc {
+  color: #64748b;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.itemRight {
+  text-align: right;
+}
+
+.itemDate {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.itemSubdate {
+  color: #64748b;
+  font-size: 0.8rem;
+}

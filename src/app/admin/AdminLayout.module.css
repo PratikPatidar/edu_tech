@@ -1,0 +1,112 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f7fe;
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebar {
+  width: 280px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.03);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 3.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, #FF6B6B, #4DABF7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navLink {
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  color: #a3aed1;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navLink:hover {
+  background: #f4f7fe;
+  color: #4DABF7;
+  transform: translateX(5px);
+}
+
+.mainContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.topNavbar {
+  height: 80px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 4rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.profileWidget {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileAvatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #4DABF7, #c084fc);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileName {
+  font-weight: 700;
+  color: #2b3674;
+}
+
+.profileRole {
+  font-size: 0.8rem;
+  color: #a3aed1;
+}
+
+.mainContent {
+  padding: 3rem 4rem;
+  overflow-y: auto;
+}
