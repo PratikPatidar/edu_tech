@@ -4,11 +4,10 @@
   "packageManager": "npm@10.2.0",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "npx turbo run dev",
-    "build": "turbo run build",
-    "test": "turbo run test",
-    "lint": "turbo run lint",
-    "start": "turbo run start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
