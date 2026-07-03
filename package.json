@@ -1,9 +1,10 @@
 {
   "name": "edumiracle-monorepo",
   "private": true,
+  "packageManager": "npm@10.2.0",
   "workspaces": ["apps/*", "packages/*"],
   "scripts": {
-    "dev": "npm exec turbo run dev --parallel",
+    "dev": "npx turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
