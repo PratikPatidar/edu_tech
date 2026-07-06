@@ -31,11 +31,7 @@ export default function LoginPage() {
       if (data.role === 'admin' || data.role === 'educator') {
         toast.success('Welcome Admin! Redirecting...');
         setTimeout(() => {
-          if (window.location.hostname.includes('admin')) {
-            window.location.href = '/';
-          } else {
-            window.location.href = `http://admin.localhost:3001/`; 
-          }
+          window.location.href = '/admin';
         }, 800);
       } else {
         toast.success('Welcome Student! Redirecting...');
