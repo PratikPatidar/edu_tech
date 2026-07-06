@@ -24,11 +24,11 @@ export async function POST(req: Request) {
     await Inquiry.create({ name, email, phone, program, message });
     try {
       const { sendEmail } = await import('@/lib/email');
-      await sendEmail({
-        to: 'admissions@edumiracle.in',
-        subject: `New Inquiry from ${name}`,
-        html: `<h2>New Website Inquiry</h2><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone || 'Not provided'}</p><p><strong>Program:</strong> ${program || 'Not specified'}</p><p><strong>Message:</strong> ${message}</p>`,
-      });
+      await sendEmail(
+        'admissions@edumiracle.in',
+        `New Inquiry from ${name}`,
+        `<h2>New Website Inquiry</h2><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone || 'Not provided'}</p><p><strong>Program:</strong> ${program || 'Not specified'}</p><p><strong>Message:</strong> ${message}</p>`
+      );
     } catch (emailErr) {
       console.warn('Email send failed:', emailErr);
     }
