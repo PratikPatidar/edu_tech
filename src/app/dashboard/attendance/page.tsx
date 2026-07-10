@@ -31,12 +31,12 @@ interface AttendanceResponse {
 }
 
 const statusConfig = {
-  present: { bg: 'bg-white dark:bg-slate-900 border-green-500/80 dark:border-green-600 shadow-sm', pill: 'bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-400 border border-green-200/50 dark:border-green-900/20', label: 'Present' },
-  half:    { bg: 'bg-amber-50/70 dark:bg-amber-950/30 border-amber-400 dark:border-amber-700 shadow-sm', pill: 'bg-amber-100/60 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border border-amber-250/50 dark:border-amber-800/20', label: 'Early Left' },
-  absent:  { bg: 'bg-red-50/80 dark:bg-red-950/40 border-red-400 dark:border-red-700 shadow-sm', pill: 'bg-red-100/60 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-250/50 dark:border-red-800/20', label: 'Absent' },
-  holiday: { bg: 'bg-blue-50/40 dark:bg-blue-950/20 border-blue-400 dark:border-blue-800 shadow-sm', pill: 'bg-blue-100/60 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border border-blue-200/50 dark:border-blue-800/20', label: 'Holiday' },
-  weekend: { bg: 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm', pill: 'bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 border border-slate-100 dark:border-slate-800/20', label: 'Sunday' },
-  future:  { bg: 'bg-transparent border border-dashed border-slate-200 dark:border-slate-800', pill: '', label: '' },
+  present: { bg: 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm', dot: 'bg-green-500', label: 'Present' },
+  half:    { bg: 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm', dot: 'bg-amber-500', label: 'Early Left' },
+  absent:  { bg: 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm', dot: 'bg-red-500', label: 'Absent' },
+  holiday: { bg: 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm', dot: 'bg-blue-500', label: 'Holiday' },
+  weekend: { bg: 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm', dot: 'bg-slate-400', label: 'Sunday' },
+  future:  { bg: 'bg-transparent border border-dashed border-slate-200 dark:border-slate-800', dot: 'bg-transparent', label: '' },
 };
 
 function Sk({ cls = '' }: { cls?: string }) {
@@ -189,17 +189,17 @@ export default function StudentAttendance() {
                       onClick={() => setSelectedDay(dayData)}
                       className={`text-left border ${
                         isSelected
-                          ? 'border-orange-500 ring-2 ring-orange-500/20 shadow-md bg-orange-50/20'
+                          ? 'border-orange-500 ring-2 ring-orange-500/20 shadow-md bg-orange-50/10'
                           : isToday
                             ? 'border-blue-500 ring-2 ring-blue-500/10 shadow-md bg-white dark:bg-slate-900'
                             : test
-                              ? 'border-orange-300 dark:border-orange-700 shadow-sm bg-orange-50/10'
+                              ? 'border-orange-300 dark:border-orange-700 bg-orange-50/5'
                               : cfg.bg
-                      } rounded-xl p-2.5 h-[64px] flex flex-col justify-between transition-all hover:shadow hover:border-slate-400 dark:hover:border-slate-600 active:scale-[0.98] ${
-                        (status !== 'future' || test) ? 'cursor-pointer' : 'cursor-default'
+                      } rounded-xl p-2.5 h-[52px] flex flex-col justify-between transition-all hover:border-slate-450 dark:hover:border-slate-650 active:scale-[0.98] ${
+                        (status !== 'future' || test) ? 'cursor-pointer shadow-sm' : 'cursor-default'
                       }`}
                     >
-                      <div className="flex justify-between items-start w-full">
+                      <div className="flex justify-between items-center w-full">
                         <span className={`text-xs font-bold ${
                           isSelected
                             ? 'text-orange-600 dark:text-orange-400'
@@ -207,13 +207,18 @@ export default function StudentAttendance() {
                               ? 'text-blue-600 dark:text-blue-400'
                               : (status === 'weekend' || status === 'future' ? 'text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white')
                         }`}>
-                          {day} {isToday && <span className="text-[9px] font-extrabold text-blue-600 dark:text-blue-400 ml-1 uppercase">Today</span>}
+                          {day}
                         </span>
+                        {isToday && (
+                          <span className="text-[8px] font-bold text-blue-500 uppercase tracking-wide leading-none">Today</span>
+                        )}
+                      </div>
+                      <div className="flex justify-start items-center w-full mt-1.5">
                         {test ? (
-                          <span className="px-1.5 py-0.5 bg-orange-500 text-white rounded text-[8px] font-bold uppercase tracking-wider">Test</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shadow-[0_0_6px_rgba(249,115,22,0.5)]" />
                         ) : (
-                          status !== 'future' && cfg.label && (
-                            <span className={`px-1.5 py-0.5 ${cfg.pill} rounded text-[8px] font-bold uppercase tracking-wider`}>{cfg.label}</span>
+                          status !== 'future' && cfg.dot && (
+                            <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
                           )
                         )}
                       </div>
@@ -228,14 +233,14 @@ export default function StudentAttendance() {
         {/* Legend */}
         <div className="flex flex-wrap gap-4 mt-8 pt-5 border-t border-slate-100 dark:border-slate-800/80">
           {[
-            { label: 'Present',       cls: 'bg-green-100/60 dark:bg-green-900/30' },
-            { label: 'Early Left',    cls: 'bg-amber-100/60 dark:bg-amber-900/30' },
-            { label: 'Absent',        cls: 'bg-red-100/60 dark:bg-red-900/30' },
-            { label: 'Holiday',       cls: 'bg-blue-100/60 dark:bg-blue-900/30' },
-            { label: 'Sunday / Test', cls: 'bg-orange-100 text-orange-700 dark:bg-orange-950/20' },
+            { label: 'Present',       cls: 'bg-green-500' },
+            { label: 'Early Left',    cls: 'bg-amber-500' },
+            { label: 'Absent',        cls: 'bg-red-500' },
+            { label: 'Holiday',       cls: 'bg-blue-500' },
+            { label: 'Sunday / Test', cls: 'bg-orange-500' },
           ].map(({ label, cls }) => (
             <div key={label} className="flex items-center gap-2">
-              <div className={`w-3 h-3 rounded ${cls}`} />
+              <div className={`w-2.5 h-2.5 rounded-full ${cls}`} />
               <span className="text-xs text-slate-500 dark:text-slate-400">{label}</span>
             </div>
           ))}

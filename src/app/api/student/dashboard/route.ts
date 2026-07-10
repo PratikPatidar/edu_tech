@@ -97,23 +97,73 @@ export async function GET(req: Request) {
       const now = new Date();
       const year = now.getFullYear();
       const month = now.getMonth() + 1;
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const currentDay = now.getDate();
       const daysList = [];
-      for (let d = 1; d <= 20; d++) {
-        if (d === 4 || d === 11 || d === 18) {
-          daysList.push({ day: d, status: 'weekend' });
-        } else if (d === 7 || d === 16) {
-          daysList.push({ day: d, status: 'absent' });
-        } else if (d === 13) {
-          daysList.push({ day: d, status: 'half' });
+      
+      for (let d = 1; d <= daysInMonth; d++) {
+        const date = new Date(year, month - 1, d);
+        const isSunday = date.getDay() === 0;
+        
+        let status;
+        let checkIn;
+        let checkOut;
+        let late;
+        
+        if (d > currentDay) {
+          status = isSunday ? 'weekend' : 'future';
         } else {
-          daysList.push({ day: d, status: 'present' });
+          if (isSunday) {
+            status = 'weekend';
+          } else {
+            const rand = Math.random();
+            if (rand < 0.85) {
+              status = 'present';
+              const punchInMin = 30 + Math.floor(Math.random() * 45);
+              const hour = punchInMin >= 60 ? 9 : 8;
+              const min = punchInMin % 60;
+              checkIn = `0${hour}:${min < 10 ? '0' + min : min} AM`;
+              if (hour === 9 && min > 0) {
+                late = `Late by ${min} minutes`;
+              }
+              const punchOutMin = Math.floor(Math.random() * 60);
+              checkOut = `04:${punchOutMin < 10 ? '0' + punchOutMin : punchOutMin} PM`;
+            } else if (rand < 0.92) {
+              status = 'half';
+              checkIn = '08:45 AM';
+              checkOut = '01:30 PM';
+              late = 'Left early (Approved)';
+            } else {
+              status = 'absent';
+            }
+          }
         }
+        
+        const dayObj = { day: d, status };
+        if (checkIn) dayObj.checkIn = checkIn;
+        if (checkOut) dayObj.checkOut = checkOut;
+        if (late) dayObj.late = late;
+        
+        if (isSunday) {
+          dayObj.test = {
+            name: 'Weekly Mock Test',
+            syllabus: 'Physics: Kinematics, Chemistry: Atomic Structure, Biology: Cell Division',
+            time: '09:00 AM - 12:00 PM'
+          };
+          if (d < currentDay) {
+            dayObj.test.score = `${Math.floor(450 + Math.random() * 200)}/720`;
+          }
+        }
+        daysList.push(dayObj);
       }
+      
+      const offsetVal = new Date(year, month - 1, 1).getDay();
+      
       await AttendanceRecord.create({
         userId,
         year,
         month,
-        offset: 0,
+        offset: offsetVal,
         days: daysList
       });
 
