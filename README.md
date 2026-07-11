@@ -1,80 +1,85 @@
-# EduMiracle – JEE & NEET Coaching Portal
+# EduMiracle — Student Portal & ERP System
 
-EduMiracle is a premium, modern coaching institute portal built using Next.js, TailwindCSS, and MongoDB Atlas. It features a complete student dashboard, admin manager panel, interactive batch quiz pathfinders, scholarship waiver calculators, and dynamic edge-crypto route protection.
+EduMiracle is a comprehensive, modern Next.js 16+ web application designed to manage student analytics, attendance tracking, study materials, mock tests (CBT environment), and fee ledgers.
+
+The application features a premium UI constructed with Tailwind CSS, offering both **Light** and **Dark** modes seamlessly, and includes dynamic re-charting for detailed performance insights.
 
 ---
 
-## 🚀 Key Features
+## 🚀 Features
 
-### 1. Public Facing Site
-* **Interactive Batch Finder Quiz**: Located on the landing page, guides prospective students to Nurture, Target, or Achiever batches.
-* **Scholarship Waiver Calculator**: Predicts fee waiver percentages (up to 90%) dynamically on `/em-sat` based on target scores.
-* **Free Study Materials**: Auto-generates and downloads mock exam papers and revision PDFs directly in the browser on `/resources`.
-* **Dynamic Faculty & Toppers Listings**: Curates expert faculty cards, milestone timelines, and paginated topper ranks filterable by year.
-* **Announcements**: Header banner notifications routing directly to admissions registers.
+- **Dynamic Dashboard**: Personalized KPI tracking including attendance percentage, fee dues, AIR (All India Rank), and mock test scores.
+- **Attendance Ledger**: Premium circular gauges and grid-based calendars with visual cues for attendance statuses (Present, Absent, Late, Half-day, and Mock Test days).
+- **Performance Analytics**: Visual charting (using Recharts) for subject-wise accuracy and historical mock test trends.
+- **CBT Mock Tests**: Computer Based Test simulation environment for NEET/JEE preparation.
+- **Study Materials & AI Doubts**: PDF library management and Gemini-powered AI doubt resolution.
+- **Admin Panel**: Role-based access control (RBAC) to manage users, notices, tests, and faculty schedules.
 
-### 2. Edge-Secured Portal Access
-* **Token-Based Auth**: Protected routes verify HS256 JWT tokens using the Web Crypto API (`crypto.subtle`) directly in the Edge runtime.
-* **Custom Route Handler**: `src/proxy.ts` acts as the single gateway, routing logged-in users to their respective dashboards and protecting `/admin` and `/dashboard` directories.
+---
 
-### 3. Student Portal (`/dashboard`)
-* **KPI Board**: Tracks latest mock test scores, All India Ranks, monthly attendance percentages, and pending fee balances.
-* **Syllabus Progress Bar**: Graphic display of subject-wise completion rates.
-* **Calendar Ledger**: Active monthly calendar displaying presents, half-days, absents, and holidays.
-* **Materials & Profile Manager**: Access to batch study guides and account settings.
+## 🔑 Login Credentials (Demo Accounts)
 
-### 4. Admin Manager (`/admin`)
-* **Analytics**: Overview of total students, batch statistics, test results, and attendance curves.
-* **Student Registry**: Complete student list showing fee status, enrollment details, and batch designations.
+To access the platform, you can use the following seeded demo accounts:
 
-### 5. Self-Healing Database
-* When test student accounts (like `Aadhya` or `STU2026001`) sign in, if the database finds their logs are missing or empty, the dashboard API **proactively creates and populates** their profiles, fee installments, mock tests, and attendance ledgers on the fly.
+### 1. Student Portal
+- **Student ID**: `STU2026001` or `EM-2024-102`
+- **Password**: `Student@123`
+
+### 2. Admin Portal
+- **Email ID**: `admin@edumiracle.in`
+- **Password**: `Admin@123` *(Assuming default admin seed)*
 
 ---
 
 ## 🛠️ Technology Stack
-* **Framework**: Next.js 16 (using App Router and Turbopack)
-* **Styling**: TailwindCSS & Vanilla CSS
-* **Database**: MongoDB Atlas
-* **Query Builder**: Mongoose
-* **Authentication**: JWT signed via Web Crypto API (Edge-safe)
+
+- **Framework**: [Next.js 16.2+](https://nextjs.org/) (App Router, Turbopack)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS (with native `dark:` mode variants)
+- **Database**: MongoDB (Mongoose ORM)
+- **Icons**: Lucide React
+- **Charts**: Recharts
 
 ---
 
-## ⚙️ Setup & Installation
+## 💻 Getting Started Locally
 
-1. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+### 1. Clone the repository
+```bash
+git clone https://github.com/PratikPatidar/edu_tech.git
+cd edu_tech
+```
 
-2. **Configure Environment Variables**:
-   Create a `.env.local` file in the root folder:
-   ```env
-   MONGODB_URI="your_mongodb_atlas_connection_string"
-   JWT_SECRET="your_secure_hash_secret"
-   ADMIN_EMAIL="admin@gmail.com"
-   ADMIN_PASSWORD="Admin@1234"
-   ```
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-3. **Database Seeding**:
-   - Run the dev server.
-   - Visit `http://localhost:3000/api/init` in your browser once to initialize the default administrator account.
-   - Visit `http://localhost:3000/api/seed` to seed 60 mock student profiles.
+### 3. Environment Variables
+Create a `.env.local` file in the root directory with the following keys:
+```env
+MONGODB_URI="your_mongodb_connection_string"
+JWT_SECRET="your_jwt_secret_key"
+```
 
-4. **Launch Local Server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) to view the portal.
+### 4. Seed the Database
+To populate the database with dummy data for the student portal, run the seeding script:
+```bash
+node --env-file=.env.local seed_em2024102.mjs
+```
+
+### 5. Run the Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 👥 Default Test Credentials
+## ⚙️ Architecture Notes
 
-* **Student Portal**:
-  * **User ID**: `Aadhya`  *(or `STU2026001`)*
-  * **Password**: `Student@123`
-* **Admin Portal**:
-  * **Email**: `admin@gmail.com`
-  * **Password**: `Admin@1234`
+- **Middleware**: This project uses a custom `proxy.ts` wrapper instead of Next.js edge `middleware.ts` to ensure compatibility with Node.js modules like `mongoose` and `jsonwebtoken`.
+- **Theming**: Dark mode is handled via `document.documentElement.classList.add('dark')` and synced with `localStorage`. All components utilize Tailwind's `dark:` pseudo-classes for styling.
+
+---
+*Developed for the EduMiracle Coaching Institute.*
