@@ -98,18 +98,18 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       <div className="relative group block">
         <Link
           href={link.path}
-          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 text-[13px] font-medium ${
+          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium ${
             isSidebarCollapsed ? 'justify-center' : ''
           } ${
             isActive
-              ? 'bg-orange-50 text-orange-700 dark:bg-orange-950/30 dark:text-orange-400'
-              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white'
+              ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white'
           }`}
         >
-          <span className={`shrink-0 w-8 h-8 rounded-xl flex items-center justify-center border transition-all ${
+          <span className={`shrink-0 flex items-center justify-center transition-all ${
             isActive
-              ? 'bg-orange-100 border-orange-300 text-orange-600 dark:bg-orange-950/50 dark:border-orange-700 dark:text-orange-400 shadow-sm'
-              : 'bg-orange-50/60 border-orange-100 text-orange-500 dark:bg-orange-950/10 dark:border-orange-900/20'
+              ? 'text-indigo-600 dark:text-indigo-400 drop-shadow-sm'
+              : 'text-slate-500 dark:text-slate-500'
           }`}>
             {link.icon}
           </span>
@@ -129,10 +129,10 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
   const SidebarContent = ({ mobile = false }: { mobile?: boolean }) => (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className={`h-16 px-4 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800/50 shrink-0 ${mobile ? 'justify-between' : ''}`}>
+      <div className={`h-16 px-4 flex items-center gap-3 shrink-0 mb-4 ${mobile ? 'justify-between' : ''}`}>
         <div className="flex items-center gap-3 overflow-hidden">
-          <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-xs shrink-0">
-            ST
+          <div className="w-8 h-8 bg-indigo-600 rounded-xl shadow-md flex items-center justify-center text-white font-bold text-xs shrink-0">
+            EM
           </div>
           {(!isSidebarCollapsed || mobile) && (
             <div className="whitespace-nowrap">
@@ -149,13 +149,13 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       </div>
 
       {/* Nav */}
-      <div className="flex-1 p-1">
+      <div className="flex-1 px-3">
         {(!isSidebarCollapsed || mobile) && (
-          <div className="px-2 mb-2">
-            <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 tracking-widest uppercase">My Learning</span>
+          <div className="px-3 mb-3">
+            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 tracking-widest uppercase">My Learning</span>
           </div>
         )}
-        <nav className="space-y-0.5">
+        <nav className="space-y-1">
           {navLinks.map(link => (
             <NavItem key={link.path} link={link} />
           ))}
@@ -192,7 +192,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
     <div className="h-screen overflow-hidden flex bg-[#f8fafc] dark:bg-slate-950 font-sans text-slate-800 dark:text-slate-200">
 
       {/* -- Desktop Sidebar ------------------------------------------------ */}
-      <aside className={`hidden md:flex flex-col overflow-hidden ${isSidebarCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-20 shrink-0`}>
+      <aside className={`hidden md:flex flex-col overflow-hidden ${isSidebarCollapsed ? 'w-16' : 'w-64'} transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-20 shrink-0`}>
         <SidebarContent />
       </aside>
 
@@ -256,20 +256,20 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
             {/* Dark mode toggle */}
             <button
               onClick={() => setIsDark(!isDark)}
-              className="w-8 h-8 rounded-xl flex items-center justify-center border border-orange-100 dark:border-orange-900/20 bg-orange-50/60 dark:bg-orange-950/20 text-orange-500 transition-all hover:bg-orange-100"
+              className="w-9 h-9 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               title="Toggle Theme"
             >
-              <Moon size={15} />
+              <Moon size={16} />
             </button>
 
             {/* Notification Bell */}
             <div className="relative" ref={notifRef}>
               <button
                 onClick={() => { setIsNotifOpen(!isNotifOpen); setIsProfileOpen(false); }}
-                className="w-8 h-8 rounded-xl flex items-center justify-center border border-orange-100 dark:border-orange-900/20 bg-orange-50/60 dark:bg-orange-950/20 text-orange-500 transition-all hover:bg-orange-100 relative"
+                className="w-9 h-9 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors relative"
                 title="Notifications"
               >
-                <Bell size={15} />
+                <Bell size={16} />
                 {unreadCount > 0 && (
                   <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white dark:ring-slate-900" />
                 )}
@@ -367,18 +367,16 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
               <Link
                 key={link.path}
                 href={link.path}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl transition-all min-w-[48px] ${
-                  isActive ? 'text-orange-600' : 'text-slate-500 dark:text-slate-400'
+                className={`flex flex-col items-center gap-1 px-2 py-2 rounded-xl transition-all min-w-[48px] ${
+                  isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400'
                 }`}
               >
-                <span className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
-                  isActive
-                    ? 'bg-orange-50 border border-orange-200 text-orange-600 dark:bg-orange-950/30 dark:border-orange-700'
-                    : 'text-slate-500'
+                <span className={`flex items-center justify-center transition-transform ${
+                  isActive ? 'scale-110' : ''
                 }`}>
                   {link.icon}
                 </span>
-                <span className={`text-[9px] font-semibold tracking-tight whitespace-nowrap ${isActive ? 'text-orange-600' : 'text-slate-400'}`}>
+                <span className={`text-[10px] font-semibold tracking-tight whitespace-nowrap ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400'}`}>
                   {link.name.split(' ')[0]}
                 </span>
               </Link>

@@ -71,7 +71,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="h-screen overflow-hidden flex bg-[#f8fafc] dark:bg-slate-950 font-sans text-slate-800 dark:text-slate-200">
       
       {/* Sidebar */}
-      <aside className={`${isSidebarCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col z-20 shrink-0`}>
+      <aside className={`${isSidebarCollapsed ? 'w-16' : 'w-64'} transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col z-20 shrink-0`}>
         <div className="h-16 px-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800/50 overflow-hidden shrink-0">
           <div className="w-8 h-8 bg-fuchsia-700 rounded-full flex items-center justify-center text-white font-semibold text-xs shrink-0">
             EM
