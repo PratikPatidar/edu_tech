@@ -172,8 +172,8 @@ export default function StudentPerformance() {
                     { icon: <TrendingUp size={14} />, label: 'All India Rank', value: selected.rank ? `#${selected.rank.toLocaleString()}` : 'N/A' },
                     { icon: <Award size={14} />,      label: 'Percentile',  value: selected.percentile ? `${selected.percentile}%` : 'N/A' },
                     { icon: <Target size={14} />,     label: 'Accuracy',
-                      value: `${Math.round((selected.subjects.reduce((a: number, s: any) => a + s.correct, 0) /
-                               (selected.subjects.reduce((a: number, s: any) => a + s.attempted, 0) || 1)) * 100)}%` },
+                      value: `${Math.round((selected.subjects.reduce((a: number, s: any) => a + (s.correct || 0), 0) /
+                               (selected.subjects.reduce((a: number, s: any) => a + ((s.correct || 0) + (s.wrong || 0)), 0) || 1)) * 100)}%` },
                   ].map(({ icon, label, value }) => (
                     <div key={label} className="bg-slate-50 dark:bg-slate-800/50 rounded-xl px-4 py-3 flex items-center gap-3">
                       <div className="text-slate-400 dark:text-slate-500 shrink-0">{icon}</div>
@@ -238,10 +238,10 @@ export default function StudentPerformance() {
                           </div>
                           <div className="grid grid-cols-4 gap-2">
                             {[
-                              { label: 'Total Qs',   value: s.total,             cls: 'text-slate-500 dark:text-slate-400' },
-                              { label: 'Attempted',  value: s.attempted,         cls: 'text-blue-600 dark:text-blue-400' },
-                              { label: 'Correct',    value: s.correct,           cls: 'text-green-600 dark:text-green-400' },
-                              { label: 'Wrong',      value: s.wrong,             cls: 'text-red-500 dark:text-red-400' },
+                              { label: 'Total Qs',   value: s.total || 0,             cls: 'text-slate-500 dark:text-slate-400' },
+                              { label: 'Attempted',  value: (s.correct || 0) + (s.wrong || 0), cls: 'text-blue-600 dark:text-blue-400' },
+                              { label: 'Correct',    value: s.correct || 0,           cls: 'text-green-600 dark:text-green-400' },
+                              { label: 'Wrong',      value: s.wrong || 0,             cls: 'text-red-500 dark:text-red-400' },
                             ].map(({ label, value, cls }) => (
                               <div key={label} className="bg-slate-50 dark:bg-slate-800/50 rounded-lg px-2 py-1.5 text-center">
                                 <div className={`text-base font-bold ${cls}`}>{value}</div>
@@ -264,10 +264,10 @@ export default function StudentPerformance() {
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {(() => {
-                      const totalQ    = selected.subjects.reduce((a: number, s: any) => a + s.total, 0);
-                      const attempted = selected.subjects.reduce((a: number, s: any) => a + s.attempted, 0);
-                      const correct   = selected.subjects.reduce((a: number, s: any) => a + s.correct, 0);
-                      const wrong     = selected.subjects.reduce((a: number, s: any) => a + s.wrong, 0);
+                      const totalQ    = selected.subjects.reduce((a: number, s: any) => a + (s.total || 0), 0);
+                      const attempted = selected.subjects.reduce((a: number, s: any) => a + ((s.correct || 0) + (s.wrong || 0)), 0);
+                      const correct   = selected.subjects.reduce((a: number, s: any) => a + (s.correct || 0), 0);
+                      const wrong     = selected.subjects.reduce((a: number, s: any) => a + (s.wrong || 0), 0);
                       const skipped   = totalQ - attempted;
                       return [
                         { label: 'Total Questions', value: totalQ,    cls: 'text-slate-900 dark:text-white' },
