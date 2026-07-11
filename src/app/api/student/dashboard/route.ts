@@ -139,7 +139,7 @@ export async function GET(req: Request) {
           }
         }
         
-        const dayObj = { day: d, status };
+        const dayObj: any = { day: d, status };
         if (checkIn) dayObj.checkIn = checkIn;
         if (checkOut) dayObj.checkOut = checkOut;
         if (late) dayObj.late = late;
