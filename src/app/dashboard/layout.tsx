@@ -149,7 +149,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       </div>
 
       {/* Nav */}
-      <div className="flex-1 overflow-y-auto py-4 px-2">
+      <div className="flex-1 p-1">
         {(!isSidebarCollapsed || mobile) && (
           <div className="px-2 mb-2">
             <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 tracking-widest uppercase">My Learning</span>
@@ -192,7 +192,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
     <div className="h-screen overflow-hidden flex bg-[#f8fafc] dark:bg-slate-950 font-sans text-slate-800 dark:text-slate-200">
 
       {/* -- Desktop Sidebar ------------------------------------------------ */}
-      <aside className={`hidden md:flex flex-col ${isSidebarCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-20 shrink-0`}>
+      <aside className={`hidden md:flex flex-col overflow-hidden ${isSidebarCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-20 shrink-0`}>
         <SidebarContent />
       </aside>
 

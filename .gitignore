@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+PortFolio/
+TripNow/
+edumiracle/
+edumiracle_new/
+flixizen/
+interview-prep/
+job_hunt_extension/
+sad/
